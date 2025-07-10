@@ -133,7 +133,6 @@ src/
 
 ---
 
-## 📥 Insomnia
 
 ## 🧪 Testes com Postman ou Insomnia
 

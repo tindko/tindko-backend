@@ -1,0 +1,220 @@
+openapi: 3.0.3
+info:
+  title: "Tindko Balan\xE7a API"
+  version: 1.0.0
+  description: "Documenta\xE7\xE3o da API do sistema de balan\xE7a para restaurante\
+    \ self-service."
+servers:
+- url: http://localhost:3001/api/balanca
+paths:
+  /comandas:
+    post:
+      summary: Criar nova comanda
+      tags:
+      - Comandas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numero:
+                  type: integer
+                status:
+                  type: string
+              required:
+              - numero
+              - status
+            example:
+              numero: 1
+              status: livre
+      responses:
+        '201':
+          description: Comanda criada com sucesso
+        '400':
+          description: "Erro na requisi\xE7\xE3o"
+  /pedidos:
+    post:
+      summary: Criar pedido
+      tags:
+      - Pedidos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                numero_comanda:
+                  type: integer
+                responsavel_id:
+                  type: string
+                responsavel_nome:
+                  type: string
+              required:
+              - numero_comanda
+              - responsavel_id
+              - responsavel_nome
+            example:
+              numero_comanda: 1
+              responsavel_id: uuid-funcionario
+              responsavel_nome: "Jo\xE3o Silva"
+      responses:
+        '201':
+          description: Pedido criado com sucesso
+        '400':
+          description: "Erro de valida\xE7\xE3o"
+    get:
+      summary: Listar todos os pedidos
+      tags:
+      - Pedidos
+      responses:
+        '200':
+          description: Lista de pedidos
+  /pedidos/abertos:
+    get:
+      summary: Listar pedidos abertos
+      tags:
+      - Pedidos
+      responses:
+        '200':
+          description: Lista de pedidos abertos
+  /pedidos/fechados:
+    get:
+      summary: Listar pedidos fechados
+      tags:
+      - Pedidos
+      responses:
+        '200':
+          description: Lista de pedidos fechados
+  /pedidos/status:
+    patch:
+      summary: Atualizar status do pedido
+      tags:
+      - Pedidos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                status:
+                  type: string
+                fechado_em:
+                  type: string
+                  format: date-time
+              required:
+              - id
+              - status
+            example:
+              id: uuid-do-pedido
+              status: fechado
+              fechado_em: '2025-07-10T14:00:00.000Z'
+      responses:
+        '200':
+          description: Status atualizado
+        '400':
+          description: "Erro de valida\xE7\xE3o"
+  /pesagens:
+    post:
+      summary: Criar pesagem
+      tags:
+      - Pesagens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pedido_id:
+                  type: string
+                categoria_id:
+                  type: string
+                peso_gramas:
+                  type: number
+                preco_por_kg:
+                  type: number
+                responsavel_id:
+                  type: string
+                responsavel_nome:
+                  type: string
+              required:
+              - pedido_id
+              - categoria_id
+              - peso_gramas
+              - preco_por_kg
+              - responsavel_id
+              - responsavel_nome
+            example:
+              pedido_id: uuid-do-pedido
+              categoria_id: buffet
+              peso_gramas: 550
+              preco_por_kg: 48.5
+              responsavel_id: uuid-funcionario
+              responsavel_nome: "Jo\xE3o Silva"
+      responses:
+        '201':
+          description: Pesagem criada
+        '400':
+          description: "Erro de valida\xE7\xE3o"
+  /adicionais:
+    post:
+      summary: Criar adicional
+      tags:
+      - Adicionais
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pedido_id:
+                  type: string
+                produto_id:
+                  type: string
+                nome_produto:
+                  type: string
+                quantidade:
+                  type: integer
+                valor_unitario:
+                  type: number
+                origem:
+                  type: string
+                responsavel_id:
+                  type: string
+                responsavel_nome:
+                  type: string
+              required:
+              - pedido_id
+              - produto_id
+              - nome_produto
+              - quantidade
+              - valor_unitario
+              - origem
+              - responsavel_id
+              - responsavel_nome
+            example:
+              pedido_id: uuid-do-pedido
+              produto_id: refri-350ml
+              nome_produto: Refrigerante
+              quantidade: 2
+              valor_unitario: 6.5
+              origem: garcom
+              responsavel_id: uuid-do-garcom
+              responsavel_nome: Maria
+      responses:
+        '201':
+          description: Adicional criado
+        '400':
+          description: "Erro de valida\xE7\xE3o"
+tags:
+- name: Comandas
+- name: Pedidos
+- name: Pesagens
+- name: Adicionais
