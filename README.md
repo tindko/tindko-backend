@@ -135,11 +135,17 @@ src/
 
 ## 📥 Insomnia
 
-### ✅ Importar Collection
+## 🧪 Testes com Postman ou Insomnia
 
-Clique no botão abaixo para importar a coleção no Insomnia (ou cole o JSON manualmente):
+[<img src="https://run.pstmn.io/button.svg" alt="Run In Postman" style="width: 128px; height: 32px;">](https://planetary-moon-892811.postman.co/collection/43832562-0e362f87-3608-423b-8ad1-4682e4bf7596?source=rip_markdown)
 
 [![Run in Insomnia](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Tindko%20Balan%C3%A7a&uri=https%3A%2F%2Fgist.githubusercontent.com%2Fyour-gist-id%2Fraw%2Finsomnia-collection.json)
+
+## 📚 Documentação Interativa (Scalar)
+
+Explore todos os endpoints com descrição, schemas e exemplos através do Scalar:
+
+[![View in Scalar](https://scalar.com/images/badge.svg)](https://scalar.com/open?url=https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/docs/openapi.yaml)
 
 > ⚠️ Substitua `your-gist-id` acima com o link real do seu Gist ou JSON exportado.
 
